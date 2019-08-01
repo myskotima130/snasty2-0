@@ -1,20 +1,110 @@
 const express = require("express");
+const { check, validationResult } = require("express-validator");
+const isAdmin = require("../middleware/isAdmin");
+const Product = require("../models/Product");
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Get all products");
+router.get("/", async (req, res) => {
+  try {
+    const products = await Product.find({}).sort({ date: -1 }); // the most recent
+    res.json(products);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
 });
 
-router.post("/", (req, res) => {
-  res.send("Add new product");
+router.post(
+  "/",
+  [
+    isAdmin,
+    [
+      check("title", "Title is required")
+        .not()
+        .isEmpty(),
+      check("image", "image is required")
+        .not()
+        .isEmpty(),
+      check("price", "price is required")
+        .not()
+        .isEmpty(),
+      check("category", "category is required")
+        .not()
+        .isEmpty(),
+      check("quantity", "quantity is required")
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const { title, image, category, price, quantity } = req.body;
+
+    try {
+      const newProduct = new Product({
+        title,
+        image,
+        category,
+        price,
+        quantity
+      });
+
+      const product = await newProduct.save();
+
+      res.json(product);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+router.put("/:id", isAdmin, async (req, res) => {
+  const { title, image, category, price, quantity } = req.body;
+
+  const productFields = {};
+
+  if (title) productFields.title = title;
+  if (image) productFields.image = image;
+  if (category) productFields.category = category;
+  if (price) productFields.price = price;
+  if (quantity) productFields.quantity = quantity;
+
+  try {
+    let product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({ msg: "Product not found" });
+    }
+
+    product = await Product.findByIdandUpdate(
+      req.params.id,
+      { $set: productFields },
+      { new: true }
+    );
+
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
 });
 
-router.put("/:id", (req, res) => {
-  res.send("Update product");
-});
+router.delete("/:id", isAdmin, async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
 
-router.delete("/:id", (req, res) => {
-  res.send("Delete product");
+    if (!product) {
+      return res.status(404).json({ msg: "Product not found" });
+    }
+
+    await Product.findByIdAndRemove(req.params.id);
+
+    res.json({ msg: "Product removed" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server Error");
+  }
 });
 
 module.exports = router;
