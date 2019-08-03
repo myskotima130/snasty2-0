@@ -11,7 +11,7 @@ router.post(
   "/",
   [
     check("email", "Введите корректный email").isEmail(),
-    check("password", "password должен быть больше 4 символов").isLength({
+    check("password", "password должен быть больше 6 символов").isLength({
       min: 6
     })
   ],
