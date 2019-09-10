@@ -7,9 +7,10 @@ connectDB();
 
 app.use(express.json({ extended: false }));
 
-app.get("/", (req, res) => res.send("Hi"));
+app.use("/uploads", express.static("uploads"));
 
 app.use("/api/users", require("./routes/users"));
+app.use("/api/order", require("./routes/order"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/products", require("./routes/products"));
 

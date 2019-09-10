@@ -13,6 +13,14 @@ const ProductSchema = mongoose.Schema({
     type: String,
     require: true
   },
+  description: {
+    type: String,
+    require: true
+  },
+  material: {
+    type: String,
+    require: true
+  },
   price: {
     type: Number,
     require: true
@@ -22,8 +30,12 @@ const ProductSchema = mongoose.Schema({
     require: true
   },
   isSale: {
-    type: Boolean,
+    type: Number,
     default: false
+  },
+  assortment: {
+    type: Array,
+    default: []
   }
 });
 

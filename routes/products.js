@@ -1,14 +1,67 @@
 const express = require("express");
 const { check, validationResult } = require("express-validator");
+const formatImageUrl = require("../utils/formatImageUrl");
 const isAdmin = require("../middleware/isAdmin");
 const Product = require("../models/Product");
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const products = await Product.find({}).sort({ date: -1 }); // the most recent
-    res.json(products);
+    let product = await Product.findById(req.params.id);
+    const {
+      _id,
+      isSale,
+      assortment,
+      image,
+      category,
+      title,
+      quantity,
+      description,
+      material
+    } = product;
+    const newProduct = {
+      id2: _id,
+      isSale,
+      assortment,
+      image: formatImageUrl(req, image),
+      category,
+      title,
+      quantity,
+      description,
+      material
+    };
+    res.json(newProduct);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/", async (req, res) => {
+  const { category, sale } = req.query;
+  try {
+    let products;
+    if (category && category !== "Все товары") {
+      products = await Product.find({ category }).sort({ date: -1 }); // the most recent
+    } else if (sale) {
+      products = await Product.find({ isSale: { $gt: 0 } }).sort({ date: -1 }); // the most recent
+    } else {
+      products = await Product.find({}).sort({ date: -1 }); // the most recent
+    }
+
+    const newProducts = products.map(
+      ({ _id, isSale, assortment, image, category, title, quantity }) => ({
+        id: _id,
+        isSale,
+        assortment,
+        image: formatImageUrl(req, image),
+        category,
+        title,
+        quantity
+      })
+    );
+    res.json(newProducts);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");
