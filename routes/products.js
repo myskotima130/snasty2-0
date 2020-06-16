@@ -13,18 +13,19 @@ router.get("/:id", async (req, res) => {
       _id,
       isSale,
       assortment,
-      image,
+      images,
       category,
       title,
       quantity,
       description,
       material
     } = product;
+    const imagesFormated = images.map(image => formatImageUrl(req, image));
     const newProduct = {
       id2: _id,
       isSale,
       assortment,
-      image: formatImageUrl(req, image),
+      images: imagesFormated,
       category,
       title,
       quantity,
@@ -51,11 +52,11 @@ router.get("/", async (req, res) => {
     }
 
     const newProducts = products.map(
-      ({ _id, isSale, assortment, image, category, title, quantity }) => ({
+      ({ _id, isSale, assortment, images, category, title, quantity }) => ({
         id: _id,
         isSale,
         assortment,
-        image: formatImageUrl(req, image),
+        images: images.map(image => formatImageUrl(req, image)),
         category,
         title,
         quantity
@@ -91,12 +92,12 @@ router.post(
     ]
   ],
   async (req, res) => {
-    const { title, image, category, price, quantity } = req.body;
+    const { title, images, category, price, quantity } = req.body;
 
     try {
       const newProduct = new Product({
         title,
-        image,
+        images,
         category,
         price,
         quantity
@@ -113,12 +114,12 @@ router.post(
 );
 
 router.put("/:id", isAdmin, async (req, res) => {
-  const { title, image, category, price, quantity } = req.body;
+  const { title, images, category, price, quantity } = req.body;
 
   const productFields = {};
 
   if (title) productFields.title = title;
-  if (image) productFields.image = image;
+  if (images) productFields.images = images;
   if (category) productFields.category = category;
   if (price) productFields.price = price;
   if (quantity) productFields.quantity = quantity;

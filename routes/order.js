@@ -4,9 +4,7 @@ const nodemailer = require("nodemailer");
 const router = express.Router();
 
 router.post("/", async (req, res) => {
-  console.log("-------------");
   const { data } = req.body;
-  console.log(data);
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -19,19 +17,17 @@ router.post("/", async (req, res) => {
     from: "lucky.catch.ua@gmail.com",
     to: "myskotima130@gmail.com",
     subject: "Заказ магазина Lucky Catch",
-    text: "That was easy!"
+    text: data
   };
 
-  transporter.sendMail(mailOptions, function(error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-    }
-  });
-
   try {
-    console.log(data);
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Email sent: " + info.response);
+      }
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
