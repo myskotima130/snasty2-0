@@ -4,8 +4,8 @@
   "description": "Snasty",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js",
+    "start": "nodemon server.js",
+    "server": "node server.js",
     "app": "npm start --prefix app",
     "appinstall": "npm install --prefix app",
     "dev": "concurrently \"npm run server\" \"npm run app\""
