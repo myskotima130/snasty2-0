@@ -1,0 +1,243 @@
+@import "../../assets/styles/variables";
+
+.wrapper {
+  padding: 0 4%;
+  display: flex;
+
+  .categories {
+    min-width: 160px;
+    margin-right: 4%;
+  }
+  .categoriesMobile {
+    position: absolute;
+    visibility: hidden;
+    margin-right: 4%;
+  }
+
+  .wrapperSection {
+    width: 100%;
+
+    .title {
+      font-size: 40px;
+      margin: 0 0 20px 0;
+    }
+
+    .titleSection {
+      display: flex;
+      color: $white;
+      font-size: 24px;
+
+      .sliderWrapper {
+        margin-right: 20px;
+        display: flex;
+        align-content: center;
+        border-radius: 10px;
+        width: 455px;
+        .slider {
+          width: 400px;
+          margin: 0 6%;
+          height: 320px;
+        }
+      }
+
+      .arrow::before {
+        color: $green-300;
+      }
+
+      .slider::before {
+        margin-left: -200px;
+      }
+
+      .productImage {
+        width: 100%;
+        display: flex;
+        align-self: center;
+        margin: 25px auto 0 auto;
+        max-height: 250px;
+        cursor: pointer;
+      }
+
+      .description {
+        margin-left: 4%;
+        color: $green-500;
+        span {
+          font-size: 16px;
+          font-weight: bold;
+          span {
+            font-weight: normal;
+          }
+        }
+        h5 {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+
+      .section {
+        display: flex;
+        margin-left: 4%;
+        width: 100%;
+
+        .priceRange {
+          float: right;
+          background: $orange-500;
+          justify-content: center;
+          padding: 20px 10px;
+          height: 80px;
+          border-radius: 5px 0 0 5px;
+        }
+        .buyRange {
+          background: $green-300;
+          height: 80px;
+          padding: 20px 10px;
+          border-radius: 0 5px 5px 0;
+          cursor: pointer;
+        }
+      }
+      h2 {
+        color: $green-500;
+        font-size: 24px;
+      }
+    }
+    .assortmentWrapper {
+      margin-top: 20px;
+    }
+    @media screen and (max-width: 1350px) {
+      .title {
+        font-size: 38px;
+      }
+      .titleSection {
+        font-size: 20px;
+
+        .sliderWrapper {
+          width: 400px;
+          .slider {
+            width: 360px;
+            height: 300px;
+          }
+        }
+
+        .productImage {
+          max-height: 230px;
+        }
+
+        .description {
+          span {
+            font-size: 14px;
+          }
+          h5 {
+            font-size: 13px;
+            line-height: 16px;
+          }
+        }
+
+        .section {
+          .priceRange {
+            float: right;
+            background: $orange-500;
+            justify-content: center;
+            padding: 10px 5px;
+            height: 50px;
+            font-size: 16px;
+          }
+          .buyRange {
+            background: $green-300;
+            height: 50px;
+            padding: 10px 5px;
+            font-size: 16px;
+          }
+        }
+        h2 {
+          color: $green-500;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    .categories {
+      position: absolute;
+      visibility: hidden;
+    }
+    .categoriesMobile {
+      position: relative;
+      visibility: visible;
+    }
+    .wrapperSection {
+      .title {
+        font-size: 28px;
+        margin: 0 0 4% 4%;
+      }
+
+      .titleSection {
+        flex-direction: column;
+        color: $white;
+        font-size: 14px;
+
+        .sliderWrapper {
+          margin-right: 10px;
+          display: flex;
+          align-content: center;
+          margin-left: 1%;
+          border-radius: 10px;
+          width: 320px;
+          .slider {
+            width: 300px;
+            margin: 0 6%;
+            height: 230px;
+          }
+        }
+
+        .productImage {
+          align-self: center;
+          margin: 5px auto 0 auto;
+          max-height: 185px;
+        }
+
+        .description {
+          margin-left: 4%;
+          color: $green-500;
+          span {
+            font-size: 14px;
+          }
+          h5 {
+            font-size: 13px;
+            line-height: 15px;
+          }
+        }
+      }
+      .assortmentWrapper {
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.sliderClick {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100000000000;
+}
+
+.sliderWrapper {
+  margin-right: 20px;
+  display: flex;
+  align-content: center;
+  width: 100vw;
+}
+
+.productImage {
+  width: 100%;
+  display: flex;
+  align-self: center;
+  margin: 25px auto 0 auto;
+}
+
+.arrow::before {
+  font-size: 40px;
+}

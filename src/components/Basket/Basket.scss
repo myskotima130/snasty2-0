@@ -1,0 +1,219 @@
+@import "../../assets/styles/variables";
+
+.wrapper {
+  font-family: Roboto;
+  position: fixed;
+  height: 100vh;
+  background-color: rgb(208, 232, 198);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  width: 25%;
+  .mainSection {
+    position: relative;
+    overflow: hidden;
+  }
+  .welcom {
+    height: 47px;
+    border-radius: 20px;
+    background-color: white;
+    margin: 5px 15px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+    .welcomText {
+      cursor: unset;
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 19px;
+      width: 60%;
+      color: $green-500;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .logout {
+      text-decoration: none;
+      width: 40%;
+      font-size: 24px;
+      color: $orange-500;
+      text-shadow: -0.5px 0 $green-500, 0 0.5px $green-500, 0.5px 0 $green-500,
+        0 -0.5px $green-500;
+    }
+  }
+  .header {
+    @extend .welcom;
+    .register {
+      text-decoration: none;
+      font-size: 16px;
+      line-height: 19px;
+      width: 60%;
+      color: $green-500;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .login {
+      @extend .logout;
+    }
+  }
+
+  .yourOrderTitle {
+    border-bottom: 3px dotted $green-500;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1% 20%;
+    font-size: 22px;
+    text-align: center;
+    color: $green-500;
+    cursor: pointer;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: $green-500;
+      width: 24px;
+      height: 24px;
+      font-size: 18px;
+      border-radius: 50%;
+      color: $white;
+    }
+  }
+
+  .form {
+    height: calc(100vh - 280px);
+    overflow: scroll;
+    form {
+      margin: 0 5%;
+      .input {
+        background: $white;
+        border-radius: 10px;
+        padding: 0 5px;
+
+        input,
+        select {
+          outline: none;
+          border: none;
+          margin: 0 0 0 3%;
+          width: 94%;
+          &::placeholder {
+            color: $grey-300;
+          }
+        }
+      }
+      label {
+        font-size: 16px;
+        color: $green-500;
+        margin: 5px 0 2px 10px;
+      }
+    }
+  }
+
+  .productsList {
+    height: calc(100vh - 280px);
+    overflow: scroll;
+  }
+
+  .callUs {
+    border-top: 3px dotted $green-500;
+    border-bottom: 3px dotted $green-500;
+    text-align: center;
+    font-size: 24px;
+    line-height: 36px;
+
+    .call {
+      color: $green-500;
+      font-size: 24px;
+      text-align: center;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+    .number {
+      color: $orange-500;
+      font-size: 24px;
+      text-shadow: -0.5px 0 $green-500, 0 0.5px $green-500, 0.5px 0 $green-500,
+        0 -0.5px $green-500;
+    }
+  }
+
+  .yourOrder {
+    display: flex;
+    font-size: 30px;
+    line-height: 35px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 25% 0;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    color: $green-500;
+  }
+  .footer {
+    z-index: 1;
+    position: inherit;
+    bottom: 0;
+    width: 25%;
+    border-top: 3px dotted $green-500;
+
+    .sum {
+      background: rgb(208, 232, 198);
+      text-align: center;
+      color: $green-500;
+      font-size: 24px;
+      padding: 5px 0;
+    }
+
+    .buy {
+      @extend .header;
+      .text {
+        width: 100%;
+        color: $orange-500;
+        font-size: 20px;
+        line-height: 28px;
+        margin: 25% 0;
+        text-shadow: -0.5px 0 $green-500, 0 0.5px $green-500, 0.5px 0 $green-500,
+          0 -0.5px $green-500;
+      }
+
+      .disable {
+        width: 100%;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
+        cursor: unset;
+        color: grey;
+      }
+    }
+  }
+  @media screen and (max-width: 991px) {
+    height: calc(100vh - 58px);
+    margin-bottom: 50px;
+    width: 100%;
+    .footer {
+      width: 100%;
+    }
+  }
+  @media screen and (max-height: 666px) {
+    .callUs {
+      height: 90px;
+      .call {
+        color: $green-500;
+        font-size: 20px;
+        margin-bottom: -10px;
+        text-align: center;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+      .number {
+        color: $orange-500;
+        font-size: 20px;
+        text-shadow: -0.5px 0 $green-500, 0 0.5px $green-500, 0.5px 0 $green-500,
+          0 -0.5px $green-500;
+      }
+    }
+    .productsList {
+      height: calc(100vh - 260px);
+    }
+    .form {
+      height: calc(100vh - 260px);
+    }
+  }
+}

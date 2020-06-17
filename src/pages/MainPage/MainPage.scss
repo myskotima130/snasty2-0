@@ -1,0 +1,31 @@
+.wrapper {
+  padding: 0 4%;
+  .content {
+    display: flex;
+    justify-content: space-between;
+
+    .categoriesMobile {
+      position: absolute;
+      visibility: hidden;
+      margin-right: 4%;
+    }
+
+    .categories {
+      min-width: 160px;
+      margin-right: 4%;
+    }
+
+    @media screen and (max-width: 500px) {
+      display: flex;
+      flex-direction: column;
+      .categories {
+        position: absolute;
+        visibility: hidden;
+      }
+      .categoriesMobile {
+        position: relative;
+        visibility: visible;
+      }
+    }
+  }
+}

@@ -1,0 +1,140 @@
+@import "../../../assets/styles/variables";
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $green-100;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+
+  p {
+    margin: 0;
+  }
+
+  .priceWrapper {
+    display: flex;
+    align-items: center;
+
+    .price {
+      background: $orange-500;
+      text-align: center;
+      min-width: 100px;
+      width: fit-content;
+      color: $white;
+      height: 100%;
+      padding: 11px 5px;
+      margin: -20px 0 -20px 0;
+      border-radius: 5px;
+    }
+
+    svg {
+      width: 5.5%;
+      height: 3%;
+      position: absolute;
+      line {
+        stroke: red;
+        stroke-width: 1;
+      }
+    }
+    .sale {
+      color: red;
+      position: absolute;
+      padding: 0 0 30px 40px;
+      font-size: 20px;
+    }
+
+    .countWrapper {
+      margin: 0 15px;
+      display: flex;
+
+      .decrCount {
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        background: $green-500;
+        color: $white;
+        border-radius: 50%;
+        height: 24px;
+        width: 24px;
+        cursor: pointer;
+        &:hover {
+          background: $green-300;
+        }
+      }
+
+      .count {
+        height: 100%;
+        width: 20px;
+        margin: 0;
+        outline: none;
+        text-align: center;
+        border: none;
+      }
+
+      .addCount {
+        @extend .decrCount;
+      }
+    }
+
+    .buy {
+      color: $white;
+      background: $green-300;
+      height: 100%;
+      padding: 6px 5px 6px 5px;
+      margin: -20px -10px -20px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        background: $green-500;
+      }
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    padding: 5px;
+    margin-bottom: 4px;
+    border-radius: 4px;
+
+    .priceWrapper {
+      .price {
+        padding: 5px 2px;
+        margin: -20px 0 -20px 0;
+        border-radius: 4px;
+      }
+
+      svg {
+        width: 5.5%;
+        height: 3%;
+        position: absolute;
+        line {
+          stroke: red;
+          stroke-width: 1;
+        }
+      }
+      .sale {
+        padding: 0 0 5px 10px;
+        font-size: 12px;
+      }
+
+      .countWrapper {
+        margin: 0 10px;
+
+        .decrCount {
+          height: 24px;
+          width: 24px;
+        }
+      }
+
+      .buy {
+        display: flex;
+        align-items: center;
+        font-size: 0;
+        height: 100%;
+        padding: 10px 0;
+        margin: -20px -10px -20px 0;
+        border-radius: 4px;
+      }
+    }
+  }
+}

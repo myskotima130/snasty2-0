@@ -1,0 +1,13 @@
+@import "../../assets/styles/variables";
+
+.wrapper {
+  padding: 0 4%;
+  display: flex;
+
+  .title {
+    font-size: 36px;
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: $green-500;
+  }
+}
