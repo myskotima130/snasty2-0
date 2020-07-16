@@ -8,7 +8,8 @@
     "server": "node server.js",
     "app": "npm start --prefix app",
     "appinstall": "npm install --prefix app",
-    "dev": "concurrently \"npm run server\" \"npm run app\""
+    "dev": "concurrently \"npm run server\" \"npm run app\"",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.5",
     "nodemailer": "^6.3.0",
+    "path": "^0.12.7",
     "url": "^0.11.0"
   },
   "devDependencies": {

@@ -9,6 +9,8 @@ app.use(express.json({ extended: false }));
 
 app.use("/uploads", express.static("uploads"));
 
+app.use(express.static('../build'));
+
 app.use("/api/users", require("./routes/users"));
 app.use("/api/order", require("./routes/order"));
 app.use("/api/auth", require("./routes/auth"));
